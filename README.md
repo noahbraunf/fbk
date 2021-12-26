@@ -1,5 +1,5 @@
-A Lush Theme for Neovim.
+A [Lush](https://github.com/rktjmp/lush.nvim) Theme for Neovim, based off of **Shirakami Fubuki** :corn:
 ===
 
-See: http://git.io/lush.nvim for more information on Lush and a helper script
-to setup your repo clone.
+Screenshot:
+**TODO: ADD SCREENSHOT**
