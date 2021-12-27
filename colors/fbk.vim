@@ -17,5 +17,5 @@ let g:colors_name="fbk"
 lua package.loaded['lush_theme.fbk'] = nil
 
 " include our theme file and pass it to lush to apply
-lua require('lush')(require('lush_theme.fbk'))
+lua require('lush')(require('lush_theme.fbk').theme)
 

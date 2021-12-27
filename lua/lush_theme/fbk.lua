@@ -45,19 +45,21 @@
 local lush = require('lush')
 local hsl = lush.hsl
 
-local black  = hsl(249, 20, 7)  -- #0F0E15
-local white  = hsl(40, 60, 98)  -- #FDFBF7
-local gray   = hsl(23, 16, 72)  -- #C3B5AC
-local lgray  = hsl(26, 15, 91)  -- #EBE7E4
-local green  = hsl(144, 70, 86) -- #C1F4D5
-local blue   = hsl(200, 84, 80) -- #A1DBF7
-local red    = hsl(357, 48, 43) -- #A2393F
-local yellow = hsl(54, 99, 73)  -- #FEF178
+local color_config = {}
+
+color_config.black  = hsl(249, 20, 7)  -- #0F0E15
+color_config.white  = hsl(40, 60, 98)  -- #FDFBF7
+color_config.gray   = hsl(23, 16, 72)  -- #C3B5AC
+color_config.lgray  = hsl(26, 15, 91)  -- #EBE7E4
+color_config.green  = hsl(144, 70, 86) -- #C1F4D5
+color_config.blue   = hsl(200, 84, 80) -- #A1DBF7
+color_config.red    = hsl(357, 48, 43) -- #A2393F
+color_config.yellow = hsl(54, 99, 73)  -- #FEF178
 
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
 ---@diagnostic disable: undefined-global
-local theme = lush(function()
+color_config.theme = lush(function()
   return {
     -- The following are all the Neovim default highlight groups from the docs
     -- as of 0.5.0-nightly-446, to aid your theme creation. Your themes should
@@ -71,8 +73,8 @@ local theme = lush(function()
     -- styling for that group (meaning they mostly get styled as Normal)
     -- or leave them commented to apply vims default colouring or linking.
 
-    Comment      { fg = black.desaturate(25).lighten(25) }, -- any comment
-    ColorColumn  { fg = black, bg = lgray }, -- used for the columns set with 'colorcolumn'
+    Comment      { fg = color_config.black.desaturate(25).lighten(25) }, -- any comment
+    ColorColumn  { fg = color_config.black, bg = color_config.lgray }, -- used for the columns set with 'colorcolumn'
     Conceal      { }, -- placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor       { }, -- character under the cursor
     lCursor      { }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
@@ -80,39 +82,39 @@ local theme = lush(function()
     CursorColumn { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
     CursorLine   { }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
     Directory    { }, -- directory names (and other special names in listings)
-    DiffAdd      { fg = green }, -- diff mode: Added line |diff.txt|
+    DiffAdd      { fg = color_config.green }, -- diff mode: Added line |diff.txt|
     DiffChange   { }, -- diff mode: Changed line |diff.txt|
-    DiffDelete   { fg = red }, -- diff mode: Deleted line |diff.txt|
-    DiffText     { fg = black, bg = gray }, -- diff mode: Changed text within a changed line |diff.txt|
+    DiffDelete   { fg = color_config.red }, -- diff mode: Deleted line |diff.txt|
+    DiffText     { fg = color_config.black, bg = color_config.gray }, -- diff mode: Changed text within a changed line |diff.txt|
     EndOfBuffer  { }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
     TermCursor   { }, -- cursor in a focused terminal
     TermCursorNC { }, -- cursor in an unfocused terminal
     ErrorMsg     { }, -- error messages on the command line
     VertSplit    { }, -- the column separating vertically split windows
-    Folded       { fg = gray }, -- line used for closed folds
+    Folded       { fg = color_config.gray }, -- line used for closed folds
     FoldColumn   { }, -- 'foldcolumn'
     SignColumn   { }, -- column where |signs| are displayed
-    IncSearch    { fg = black, bg = green }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-    Substitute   { fg = black, bg = blue }, -- |:substitute| replacement text highlighting
-    LineNr       { fg = green }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    CursorLineNr { fg = blue }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-    MatchParen   { fg = green }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+    IncSearch    { fg = color_config.black, bg = color_config.green }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+    Substitute   { fg = color_config.black, bg = color_config.blue }, -- |:substitute| replacement text highlighting
+    LineNr       { fg = color_config.green }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    CursorLineNr { fg = color_config.blue }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    MatchParen   { fg = color_config.green }, -- The character under the cursor or just before it, if it is a paicolor_config.red bracket, and its match. |pi_paren.txt|
     ModeMsg      { }, -- 'showmode' message (e.g., "-- INSERT -- ")
     MsgArea      { }, -- Area for messages and cmdline
     MsgSeparator { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     MoreMsg      { }, -- |more-prompt|
     NonText      { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal       { fg = white, bg = black }, -- normal text
+    Normal       { fg = color_config.white, bg = color_config.black }, -- normal text
     NormalFloat  { }, -- Normal text in floating windows.
     NormalNC     { }, -- normal text in non-current windows
     Pmenu        { }, -- Popup menu: normal item.
-    PmenuSel     { fg = black, bg = white }, -- Popup menu: selected item.
+    PmenuSel     { fg = color_config.black, bg = color_config.white }, -- Popup menu: selected item.
     PmenuSbar    { }, -- Popup menu: scrollbar.
     PmenuThumb   { }, -- Popup menu: Thumb of the scrollbar.
     Question     { }, -- |hit-enter| prompt and yes/no questions
     QuickFixLine { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    Search       { fg = black, bg = blue }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
-    SpecialKey   { }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
+    Search       { fg = color_config.black, bg = color_config.blue }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
+    SpecialKey   { }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' color_config.whitespace. |hl-Whitespace|
     SpellBad     { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise. 
     SpellCap     { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     SpellLocal   { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
@@ -123,7 +125,7 @@ local theme = lush(function()
     TabLineFill  { }, -- tab pages line, where there are no labels
     TabLineSel   { }, -- tab pages line, active tab page label
     Title        { }, -- titles for output from ":set all", ":autocmd" etc.
-    Visual       { fg = black, bg = white }, -- Visual mode selection
+    Visual       { fg = color_config.black, bg = color_config.white }, -- Visual mode selection
     VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
     WarningMsg   { }, -- warning messages
     Whitespace   { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
@@ -131,56 +133,56 @@ local theme = lush(function()
 
     -- These groups are not listed as default vim groups,
     -- but they are defacto standard group names for syntax highlighting.
-    -- commented out groups should chain up to their "preferred" group by
+    -- commented out groups should chain up to their "prefercolor_config.red" group by
     -- default,
     -- Uncomment and edit if you want more specific syntax highlighting.
 
-    Constant       { fg = lgray, gui = "bold" }, -- (preferred) any constant
-    String         { fg = blue }, --   a string constant: "this is a string"
-    Character      { fg = blue }, --  a character constant: 'c', '\n'
-    Number         { fg = green }, --   a number constant: 234, 0xff
-    Boolean        { fg = red.lighten(70) }, --  a boolean constant: TRUE, false
-    Float          { fg = green }, --    a floating point constant: 2.3e10
+    Constant       { fg = color_config.lgray, gui = "bold" }, -- (prefercolor_config.red) any constant
+    String         { fg = color_config.blue }, --   a string constant: "this is a string"
+    Character      { fg = color_config.blue }, --  a character constant: 'c', '\n'
+    Number         { fg = color_config.green }, --   a number constant: 234, 0xff
+    Boolean        { fg = color_config.red.lighten(70) }, --  a boolean constant: TRUE, false
+    Float          { fg = color_config.green }, --    a floating point constant: 2.3e10
 
-    Identifier     { fg = white.darken(15), gui = "bold" }, -- (preferred) any variable name
-    Function       { fg = white.darken(15), gui = "bold" }, -- function name (also: methods for classes)
+    Identifier     { fg = color_config.white.darken(15), gui = "bold" }, -- (prefercolor_config.red) any variable name
+    Function       { fg = color_config.white.darken(15), gui = "bold" }, -- function name (also: methods for classes)
 
-    Statement      { fg = white.darken(5) }, -- (preferred) any statement
-    Conditional    { fg = white.darken(5) }, --  if, then, else, endif, switch, etc.
-    Repeat         { fg = white.darken(5) }, --   for, do, while, etc.
-    Label          { fg = white.darken(5) }, --    case, default, etc.
-    Operator       { fg = green }, -- "sizeof", "+", "*", etc.
-    Keyword        { fg = white.darken(5) }, --  any other keyword
-    Exception      { fg = white.darken(5) }, --  try, catch, throw
+    Statement      { fg = color_config.white.darken(5) }, -- (prefercolor_config.red) any statement
+    Conditional    { fg = color_config.white.darken(5) }, --  if, then, else, endif, switch, etc.
+    Repeat         { fg = color_config.white.darken(5) }, --   for, do, while, etc.
+    Label          { fg = color_config.white.darken(5) }, --    case, default, etc.
+    Operator       { fg = color_config.green }, -- "sizeof", "+", "*", etc.
+    Keyword        { fg = color_config.white.darken(5) }, --  any other keyword
+    Exception      { fg = color_config.white.darken(5) }, --  try, catch, throw
 
-    PreProc        { fg = green }, -- (preferred) generic Preprocessor
-    Include        { fg = green }, --  preprocessor #include
-    Define         { fg = green }, --   preprocessor #define
-    Macro          { fg = green }, --    same as Define
-    PreCondit      { fg = green }, --  preprocessor #if, #else, #endif, etc.
+    PreProc        { fg = color_config.green }, -- (prefercolor_config.red) generic Preprocessor
+    Include        { fg = color_config.green }, --  preprocessor #include
+    Define         { fg = color_config.green }, --   preprocessor #define
+    Macro          { fg = color_config.green }, --    same as Define
+    PreCondit      { fg = color_config.green }, --  preprocessor #if, #else, #endif, etc.
 
-    Type           { fg = lgray.darken(5) }, -- (preferred) int, long, char, etc.
+    Type           { fg = color_config.lgray.darken(5) }, -- (prefercolor_config.red) int, long, char, etc.
     StorageClass   { }, -- static, register, volatile, etc.
     Structure      { }, --  struct, union, enum, etc.
     Typedef        { }, --  A typedef
 
-    Special        { fg = green }, -- (preferred) any special symbol
+    Special        { fg = color_config.green }, -- (prefercolor_config.red) any special symbol
     SpecialChar    { }, --  special character in a constant
     Tag            { }, --    you can use CTRL-] on this
     Delimiter      { }, --  character that needs attention
     SpecialComment { }, -- special things inside a comment
     Debug          { }, --    debugging statements
 
-    -- Underlined { gui = "underline" }, -- (preferred) text that stands out, HTML links
+    -- Underlined { gui = "underline" }, -- (prefercolor_config.red) text that stands out, HTML links
     -- Bold       { gui = "bold" },
     -- Italic     { gui = "italic" },
 
     -- ("Ignore", below, may be invisible...)
-    -- Ignore         { }, -- (preferred) left blank, hidden  |hl-Ignore|
+    -- Ignore         { }, -- (prefercolor_config.red) left blank, hidden  |hl-Ignore|
 
-    Error          { bg = red }, -- (preferred) any erroneous construct
+    Error          { bg = color_config.red }, -- (preferred) any erroneous construct
 
-    Todo           { fg = white, bg = yellow }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+    Todo           { fg = color_config.white, bg = color_config.yellow }, -- (prefercolor_config.red) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
     -- These groups are for the native LSP client. Some other LSP clients may
     -- use these groups, or use their own. Consult your LSP client's
@@ -279,6 +281,6 @@ local theme = lush(function()
 end)
 
 -- return our parsed theme for extension or use else where.
-return theme
+return color_config
 
 -- vi:nowrap
