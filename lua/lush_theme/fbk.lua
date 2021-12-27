@@ -71,7 +71,7 @@ local theme = lush(function()
     -- styling for that group (meaning they mostly get styled as Normal)
     -- or leave them commented to apply vims default colouring or linking.
 
-    Comment      { fg = gray }, -- any comment
+    Comment      { fg = black.desaturate(25).lighten(25) }, -- any comment
     ColorColumn  { fg = black, bg = lgray }, -- used for the columns set with 'colorcolumn'
     Conceal      { }, -- placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor       { }, -- character under the cursor
@@ -135,31 +135,31 @@ local theme = lush(function()
     -- default,
     -- Uncomment and edit if you want more specific syntax highlighting.
 
-    Constant       { fg = lgray, gui = "underline" }, -- (preferred) any constant
+    Constant       { fg = lgray, gui = "bold" }, -- (preferred) any constant
     String         { fg = blue }, --   a string constant: "this is a string"
-    Character      { fg = blue}, --  a character constant: 'c', '\n'
+    Character      { fg = blue }, --  a character constant: 'c', '\n'
     Number         { fg = green }, --   a number constant: 234, 0xff
-    Boolean        { fg = blue }, --  a boolean constant: TRUE, false
+    Boolean        { fg = red.lighten(70) }, --  a boolean constant: TRUE, false
     Float          { fg = green }, --    a floating point constant: 2.3e10
 
-    Identifier     { fg = lgray }, -- (preferred) any variable name
-    Function       { }, -- function name (also: methods for classes)
+    Identifier     { fg = white.darken(15), gui = "bold" }, -- (preferred) any variable name
+    Function       { fg = white.darken(15), gui = "bold" }, -- function name (also: methods for classes)
 
-    Statement      { fg = lgray }, -- (preferred) any statement
-    Conditional    { }, --  if, then, else, endif, switch, etc.
-    Repeat         { }, --   for, do, while, etc.
-    Label          { }, --    case, default, etc.
-    Operator       { }, -- "sizeof", "+", "*", etc.
-    Keyword        { }, --  any other keyword
-    Exception      { }, --  try, catch, throw
+    Statement      { fg = white.darken(5) }, -- (preferred) any statement
+    Conditional    { fg = white.darken(5) }, --  if, then, else, endif, switch, etc.
+    Repeat         { fg = white.darken(5) }, --   for, do, while, etc.
+    Label          { fg = white.darken(5) }, --    case, default, etc.
+    Operator       { fg = green }, -- "sizeof", "+", "*", etc.
+    Keyword        { fg = white.darken(5) }, --  any other keyword
+    Exception      { fg = white.darken(5) }, --  try, catch, throw
 
     PreProc        { fg = green }, -- (preferred) generic Preprocessor
-    Include        { }, --  preprocessor #include
-    Define         { }, --   preprocessor #define
-    Macro          { }, --    same as Define
-    PreCondit      { }, --  preprocessor #if, #else, #endif, etc.
+    Include        { fg = green }, --  preprocessor #include
+    Define         { fg = green }, --   preprocessor #define
+    Macro          { fg = green }, --    same as Define
+    PreCondit      { fg = green }, --  preprocessor #if, #else, #endif, etc.
 
-    Type           { fg = lgray }, -- (preferred) int, long, char, etc.
+    Type           { fg = lgray.darken(5) }, -- (preferred) int, long, char, etc.
     StorageClass   { }, -- static, register, volatile, etc.
     Structure      { }, --  struct, union, enum, etc.
     Typedef        { }, --  A typedef
@@ -180,7 +180,7 @@ local theme = lush(function()
 
     Error          { bg = red }, -- (preferred) any erroneous construct
 
-    Todo           { fg = gray, bg = yellow }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+    Todo           { fg = white, bg = yellow }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
     -- These groups are for the native LSP client. Some other LSP clients may
     -- use these groups, or use their own. Consult your LSP client's
